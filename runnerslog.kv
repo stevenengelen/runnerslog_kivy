@@ -1,66 +1,74 @@
 #: import ObjectProperty kivy.properties.StringProperty
 
-AddTrainingLog:
+<AddTrainingLog>
 	orientation: "vertical"
-	log_date: date
-	log_morning_pulse: morning_pulse
-	log_training_type: training_type
-	log_distance: distance
-	log_executed_time: executed_time
-	log_in_zone: in_zone
-	log_average_heart: average_heart
 	BoxLayout:
-		Label:
-			text: "Date"
-		TextInput:
-			id: date
-	BoxLayout:
-		Label:
-			text: "Weather conditions"
-		DropDown:
-			Button:
-				text: "Hot"
-			Button:
-				text: "Hurricane"	
-	BoxLayout:
-		Label:
-			text: "Morning pulse"
-		TextInput:
-			id: morning_pulse
-		Label:
-			text: "bpm"
-	BoxLayout:
-		Label:
-			text: "Type of training"
-		Spinner:
-			text: "Lange duur"
-			values: ("Lange duur", "Intensief")
-			id: training_type
-	BoxLayout:
-		Label:
-			text: "Distance"
-		TextInput:
-			id: distance
-		Label:
-			text: "km"
-	BoxLayout:
-		Label:
-			text: "Executed time"
-		TextInput:
-			id: executed_time
-	BoxLayout:
-		Label:
-			text: "In zone"
-		TextInput:
-			id: in_zone
-	BoxLayout:
-		Label:
-			text: "Average heart frequency"
-		TextInput:
-			id: average_heart
-		Label:
-			text: "bpm"
+		orientation: "horizontal"
+		BoxLayout:
+			orientation: "vertical"
+			log_date: date
+			
+			log_morning_pulse: morning_pulse
+			log_training_type: training_type
+			log_distance: distance
+			log_executed_time: executed_time
+			log_in_zone: in_zone
+			log_average_heart: average_heart
+			Label:
+				text: "Date"
+			Label:
+				text: "Weather conditions"
+			Label:
+				text: "Morning pulse"
+			Label:
+				text: "Type of training"
+			Label:
+				text: "Distance"
+			Label:
+				text: "Executed time"
+			Label:
+				text: "In zone"
+			Label:
+				text: "Average heart frequency"
+		BoxLayout:
+			orientation: "vertical"
+			TextInput:
+				id: date
+			DropDown:
+				Button:
+					text: "Hot"
+				Button:
+					text: "Hurricane"	
+			BoxLayout:
+				orientation: "horizontal"
+				TextInput:
+					id: morning_pulse
+				Label:
+					text: "bpm"
+			Spinner:
+				text: "Lange duur"
+				values: ("Lange duur", "Intensief")
+				id: training_type
+			BoxLayout:
+				orientation: "horizontal"
+				TextInput:
+					id: distance
+				Label:
+					text: "km"
+			TextInput:
+				id: executed_time
+			TextInput:
+				id: in_zone
+			BoxLayout:
+				orientation: "horizontal"
+				TextInput:
+					id: average_heart
+				Label:
+					text: "bpm"
 	BoxLayout:
 		Button:
 			text: "Done"
 			on_press: root.on_submit()
+
+BoxLayout:
+	AddTrainingLog

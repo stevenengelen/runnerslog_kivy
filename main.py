@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.storage.jsonstore import JsonStore
+from kivy.uix.label import Label
 
 #TODO: rename this file to runnerslog.py
 #TODO: put LogEntry and it's composition classes in another file
@@ -117,6 +118,9 @@ class AddTrainingLog(BoxLayout) :
 
 
 class RunnersLogApp(App) :
+    # def run(self) :
+        # return AddTrainingLog()
+        # return Label(text = 'Hello')
     pass
 
 if __name__ == '__main__' :
