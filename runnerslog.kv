@@ -1,4 +1,4 @@
-#: import ObjectProperty kivy.properties.StringProperty
+# import ObjectProperty kivy.properties.StringProperty
 
 <AddTrainingLog>
 	orientation: "vertical"
@@ -7,13 +7,13 @@
 		BoxLayout:
 			orientation: "vertical"
 			log_date: date
-			
 			log_morning_pulse: morning_pulse
 			log_training_type: training_type
 			log_distance: distance
 			log_executed_time: executed_time
 			log_in_zone: in_zone
 			log_average_heart: average_heart
+			log_weather_type: weather_type
 			Label:
 				text: "Date"
 			Label:
@@ -34,16 +34,16 @@
 			orientation: "vertical"
 			TextInput:
 				id: date
-			DropDown:
-				Button:
-					text: "Hot"
-				Button:
-					text: "Hurricane"	
+			Spinner:
+				text: "Hot"
+				values: ("Hurricane", "Hot")
+				id: weather_type 
 			BoxLayout:
 				orientation: "horizontal"
 				TextInput:
 					id: morning_pulse
 				Label:
+					size_hint: .3, 1
 					text: "bpm"
 			Spinner:
 				text: "Lange duur"
@@ -54,6 +54,7 @@
 				TextInput:
 					id: distance
 				Label:
+					size_hint: .3, 1
 					text: "km"
 			TextInput:
 				id: executed_time
@@ -64,9 +65,11 @@
 				TextInput:
 					id: average_heart
 				Label:
+					size_hint: .3, 1
 					text: "bpm"
 	BoxLayout:
 		Button:
+			size_hint: 1, .2
 			text: "Done"
 			on_press: root.on_submit()
 
