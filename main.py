@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.storage.jsonstore import JsonStore
 from kivy.uix.label import Label
 
@@ -103,7 +103,7 @@ class LogEntry :
         store = JsonStore('runners_log.json')
         key = '1'
         data = store.get(key)
-        print(data)
+        return data
 
 
 class AddTrainingLog(BoxLayout) :
@@ -116,12 +116,37 @@ class AddTrainingLog(BoxLayout) :
         logentry.write_to_db()
         logentry.read_from_db()
 
+class ConsultTrainingLog(BoxLayout) :
+    def initialize(self, data) :
+        print(data)
+        self.date = 'date'
+        self.morning_pulse = 'pulse'
+        self.training_type = 'training_type'
+# class DateLabel(Label) :
+# text = 'Hello world, what a beautiful day.'
+'''
+    logentry = LogEntry()
+    consultlog = ConsultTrainingLog()
+    consultlog.initialize(logentry.read_from_db())
+			log_morning_pulse: morning_pulse
+			log_training_type: training_type
+			log_distance: distance
+			log_executed_time: executed_time
+			log_in_zone: in_zone
+			log_average_heart: average_heart
+			log_weather_type: weather_type
+''' 
+
 
 class RunnersLogApp(App) :
-    # def run(self) :
-        # return AddTrainingLog()
-        # return Label(text = 'Hello')
-    pass
+    def run(self) :
+        logentry = LogEntry()
+        consultlog = ConsultTrainingLog()
+        consultlog.initialize(logentry.read_from_db())
+        print('in run.....')
+        someLabel = Label()
+        someLabel.text = 'Man man ....'
+        return someLabel
 
 if __name__ == '__main__' :
     RunnersLogApp().run()

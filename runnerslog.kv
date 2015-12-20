@@ -73,5 +73,41 @@
 			text: "Done"
 			on_press: root.on_submit()
 
+<ConsultTrainingLog>
+	BoxLayout:
+		Label:
+			text: "Date"
+		Label:
+			text: "Weather conditions"
+		Label:
+			text: "Morning pulse"
+		Label:
+			text: "Type of training"
+		Label:
+			text: "Distance"
+		Label:
+			text: "Executed time"
+		Label:
+			text: "In zone"
+		Label:
+			text: "Average heart frequency"
+	BoxLayout:
+		Label:
+			text: root.date
+		Label:
+			text: "Weather conditions"
+		Label:
+			text: root.morning_pulse
+		Label:
+			text: "root.training_type"
+		Label:
+			text: "Distance"
+		Label:
+			text: "Executed time"
+		Label:
+			text: "In zone"
+		Label:
+			text: "Average heart frequency"
+
 BoxLayout:
-	AddTrainingLog
+	ConsultTrainingLog
