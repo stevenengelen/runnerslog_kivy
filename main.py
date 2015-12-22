@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.pagelayout import PageLayout
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.storage.jsonstore import JsonStore
 from kivy.uix.label import Label
@@ -105,6 +106,8 @@ class LogEntry :
         data = store.get(key)
         return data
 
+class MyPageLayout(PageLayout) :
+    pass
 
 class AddTrainingLog(BoxLayout) :
     def on_submit(self) :
@@ -117,36 +120,32 @@ class AddTrainingLog(BoxLayout) :
         logentry.read_from_db()
 
 class ConsultTrainingLog(BoxLayout) :
+    average_heart = StringProperty()
+    distance = StringProperty()
+    in_zone = StringProperty()
+    morning_pulse = StringProperty()
+    weather_conditions = StringProperty()
+    date = StringProperty()
+    executed_time = StringProperty()
+    training_type = StringProperty()
+
     def initialize(self, data) :
         print(data)
-        self.date = 'date'
-        self.morning_pulse = 'pulse'
-        self.training_type = 'training_type'
-# class DateLabel(Label) :
-# text = 'Hello world, what a beautiful day.'
-'''
-    logentry = LogEntry()
-    consultlog = ConsultTrainingLog()
-    consultlog.initialize(logentry.read_from_db())
-			log_morning_pulse: morning_pulse
-			log_training_type: training_type
-			log_distance: distance
-			log_executed_time: executed_time
-			log_in_zone: in_zone
-			log_average_heart: average_heart
-			log_weather_type: weather_type
-''' 
-
+        self.average_heart = data['average_heart']
+        self.distance = data['distance']
+        self.in_zone = data['in_zone']
+        self.morning_pulse = data['morning_pulse']
+        self.weather_conditions = data['weather_conditions']
+        self.date = data['date']
+        self.executed_time = data['executed_time']
+        self.training_type = data['training_type']
 
 class RunnersLogApp(App) :
-    def run(self) :
+    def build(self) :
         logentry = LogEntry()
         consultlog = ConsultTrainingLog()
         consultlog.initialize(logentry.read_from_db())
-        print('in run.....')
-        someLabel = Label()
-        someLabel.text = 'Man man ....'
-        return someLabel
+        return MyPageLayout()
 
 if __name__ == '__main__' :
     RunnersLogApp().run()

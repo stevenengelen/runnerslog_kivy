@@ -33,7 +33,7 @@
 		BoxLayout:
 			orientation: "vertical"
 			TextInput:
-				id: date
+				id: log_date
 			Spinner:
 				text: "Hot"
 				values: ("Hurricane", "Hot")
@@ -75,6 +75,7 @@
 
 <ConsultTrainingLog>
 	BoxLayout:
+		orientation: "vertical"
 		Label:
 			text: "Date"
 		Label:
@@ -92,22 +93,26 @@
 		Label:
 			text: "Average heart frequency"
 	BoxLayout:
+		orientation: "vertical"
 		Label:
 			text: root.date
 		Label:
-			text: "Weather conditions"
+			text: root.weather_conditions
 		Label:
 			text: root.morning_pulse
 		Label:
-			text: "root.training_type"
+			text: root.training_type
 		Label:
-			text: "Distance"
+			text: root.distance
 		Label:
-			text: "Executed time"
+			text: root.executed_time
 		Label:
-			text: "In zone"
+			text: root.in_zone
 		Label:
-			text: "Average heart frequency"
+			text: root.average_heart
+<MyPageLayout>
+	AddTrainingLog
+	ConsultTrainingLog
 
 BoxLayout:
-	ConsultTrainingLog
+	AddTrainingLog
