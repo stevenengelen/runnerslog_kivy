@@ -1,1 +1,1 @@
-{"1": {"executed_time": "4", "date": "1", "in_zone": "5", "training_type": "Lange duur", "distance": "3", "weather_conditions": "Cloudy", "average_heart": "6", "morning_pulse": "2"}}
+{"1": {"weather_conditions": "self.weather_conditions.get_weather_condition()", "executed_time": "", "morning_pulse": "", "average_heart": "", "distance": "", "date": "", "in_zone": "", "training_type": "self.training_type.get_training_type()"}}

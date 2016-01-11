@@ -97,7 +97,12 @@ class LogEntry :
         store = JsonStore('runners_log.json')
         # TODO: find a way to determine a unique key
         key = '1'
-        store.put(key, date = self.date, distance = self.distance, executed_time = self.executed_time, in_zone = self.in_zone, average_heart = self.average_heart, morning_pulse = self.morning_pulse, training_type = self.training_type.get_training_type(), weather_conditions = self.weather_conditions.get_weather_condition()) 
+        # store.put(key, date = self.date, distance = self.distance, executed_time = self.executed_time, in_zone = self.in_zone, average_heart = self.average_heart, morning_pulse = self.morning_pulse, training_type = self.training_type.get_training_type(), weather_conditions = self.weather_conditions.get_weather_condition()) 
+        store.put(key, date = self.date, distance = self.distance, executed_time =
+                self.executed_time, in_zone = self.in_zone, average_heart =
+                self.average_heart, morning_pulse = self.morning_pulse, training_type
+                = 'self.training_type.get_training_type()', weather_conditions =
+                'self.weather_conditions.get_weather_condition()') 
 
     def read_from_db(self) :
         # TODO: execption handling
@@ -110,14 +115,22 @@ class MyPageLayout(PageLayout) :
     pass
 
 class AddTrainingLog(BoxLayout) :
+    log_date = StringProperty()
+    log_morning_pulse = StringProperty()
+    log_training_type = StringProperty()
+    log_distance = StringProperty()
+    log_executed_time = StringProperty()
+    log_in_zone = StringProperty()
+    log_average_heart = StringProperty()
+    log_weather_type = StringProperty()
+
     def on_submit(self) :
         print('on submit pressed')
-        logentry = LogEntry(self.log_date.text, 'Cloudy', self.log_morning_pulse.text,
-                TrainingType(self.log_training_type.text), self.log_distance.text,
-                self.log_executed_time.text, self.log_in_zone.text,
-                self.log_average_heart.text)
+        logentry = LogEntry(self.log_date, self.log_weather_type, self.log_morning_pulse,
+                self.log_training_type, self.log_distance,
+                self.log_executed_time, self.log_in_zone,
+                self.log_average_heart)
         logentry.write_to_db()
-        logentry.read_from_db()
 
 class ConsultTrainingLog(BoxLayout) :
     average_heart = StringProperty()
@@ -129,7 +142,9 @@ class ConsultTrainingLog(BoxLayout) :
     executed_time = StringProperty()
     training_type = StringProperty()
 
-    def initialize(self, data) :
+    def initialize(self) :
+        logentry = LogEntry()
+        data = logentry.read_from_db()
         print(data)
         self.average_heart = data['average_heart']
         self.distance = data['distance']
@@ -142,10 +157,12 @@ class ConsultTrainingLog(BoxLayout) :
 
 class RunnersLogApp(App) :
     def build(self) :
-        logentry = LogEntry()
-        consultlog = ConsultTrainingLog()
-        consultlog.initialize(logentry.read_from_db())
-        return MyPageLayout()
+        myPageLayout = MyPageLayout()
+        myPageLayout.add_widget(AddTrainingLog(), 1)
+        consultTrainingLog = ConsultTrainingLog()
+        consultTrainingLog.initialize()
+        myPageLayout.add_widget(consultTrainingLog, 0)
+        return myPageLayout
 
 if __name__ == '__main__' :
     RunnersLogApp().run()
