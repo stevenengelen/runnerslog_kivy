@@ -132,6 +132,18 @@ class AddTrainingLog(BoxLayout) :
                 self.log_average_heart)
         logentry.write_to_db()
 
+    def onView(self) :
+        print('onView pressed')
+        self.clear_widgets()
+        consultTrainingLog = ConsultTrainingLog()
+        consultTrainingLog.initialize()
+        self.add_widget(consultTrainingLog)
+
+    def onAdd(self) :
+        print('onAdd pressed')
+        self.clear_widgets()
+        self.add_widget(AddTrainingLog())
+
 class ConsultTrainingLog(BoxLayout) :
     average_heart = StringProperty()
     distance = StringProperty()
@@ -157,12 +169,10 @@ class ConsultTrainingLog(BoxLayout) :
 
 class RunnersLogApp(App) :
     def build(self) :
-        myPageLayout = MyPageLayout()
-        myPageLayout.add_widget(AddTrainingLog(), 1)
-        consultTrainingLog = ConsultTrainingLog()
-        consultTrainingLog.initialize()
-        myPageLayout.add_widget(consultTrainingLog, 0)
-        return myPageLayout
+        return AddTrainingLog()
+
+class ScreenPicker(BoxLayout) :
+    pass
 
 if __name__ == '__main__' :
     RunnersLogApp().run()

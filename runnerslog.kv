@@ -1,7 +1,22 @@
 # import ObjectProperty kivy.properties.StringProperty
 
+<ScreenPicker>
+	orientation: "vertical"
+	BoxLayout:
+		Button:
+			pos: 0, 100
+			size_hint: 1, .2
+			text: "Add log"
+			on_press: app.root.onAdd()
+		Button:
+			pos: 100, 0
+			size_hint: 1, .2
+			text: "View log"
+			on_press: app.root.onView()
+
 <AddTrainingLog>
 	orientation: "vertical"
+	ScreenPicker:
 	BoxLayout:
 		orientation: "horizontal"
 		BoxLayout:
@@ -74,42 +89,51 @@
 			on_press: root.on_submit()
 
 <ConsultTrainingLog>
+	orientation: "vertical"
+	ScreenPicker:
 	BoxLayout:
-		orientation: "vertical"
-		Label:
-			text: "Date"
-		Label:
-			text: "Weather conditions"
-		Label:
-			text: "Morning pulse"
-		Label:
-			text: "Type of training"
-		Label:
-			text: "Distance"
-		Label:
-			text: "Executed time"
-		Label:
-			text: "In zone"
-		Label:
-			text: "Average heart frequency"
-	BoxLayout:
-		orientation: "vertical"
-		Label:
-			text: root.date
-		Label:
-			text: root.weather_conditions
-		Label:
-			text: root.morning_pulse
-		Label:
-			text: root.training_type
-		Label:
-			text: root.distance
-		Label:
-			text: root.executed_time
-		Label:
-			text: root.in_zone
-		Label:
-			text: root.average_heart
+		orientation: "horizontal"
+		BoxLayout:
+			orientation: "vertical"
+			Label:
+				text: "Date"
+			Label:
+				text: "Weather conditions"
+			Label:
+				text: "Morning pulse"
+			Label:
+				text: "Type of training"
+			Label:
+				text: "Distance"
+			Label:
+				text: "Executed time"
+			Label:
+				text: "In zone"
+			Label:
+				text: "Average heart frequency"
+		BoxLayout:
+			orientation: "vertical"
+			Label:
+				text: root.date
+			Label:
+				text: root.weather_conditions
+			Label:
+				text: root.morning_pulse
+			Label:
+				text: root.training_type
+			Label:
+				text: root.distance
+			Label:
+				text: root.executed_time
+			Label:
+				text: root.in_zone
+			Label:
+				text: root.average_heart
 
-BoxLayout:
-	AddTrainingLog
+<Layout>:
+	canvas:
+		Color:
+			rgba: 0,0,0,0
+		Rectangle:
+			pos: self.pos
+			size: self.size
